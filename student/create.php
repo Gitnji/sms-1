@@ -1,0 +1,24 @@
+
+<?php include "../header.php" ?>
+
+<div class="card">
+    <div class="card-header">Students Page</div>
+    <div class="card-body">
+        <form action="" method="POST">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" class="form-control" required><br>
+            <label for="address">Address</label>
+            <input type="text" name="address" id="address" class="form-control" required><br>
+            <label for="age">Age</label>
+            <input type="number" name="age" id="age" class="form-control"><br>
+            <label for="mobile">Mobile Number</label>
+            <input type="tel" name="mobile" id="mobile" class="form-control" required><br>
+            <label for="parent-contact">Parent Contact</label>
+            <input type="tel" name="parent_contact" id="parent-contact" class="form-control"><br>
+            
+            <button type="submit">Create</button>
+        </form>
+    </div>
+</div>
+
+<?php include "../footer.php" ?>
