@@ -1,3 +1,15 @@
+<?php
+require_once __DIR__ . '/models/allmodels.php';
+require_once __DIR__ . '/core/dbconnect.php';
+require_once __DIR__ . '/models/student.php';
+require_once __DIR__ . '/models/teacher.php';
+//require_once __DIR__ . '/models/course.php';
+//require_once __DIR__ . '/models/batch.php';
+//require_once __DIR__ . '/models/enrollment.php';
+//require_once __DIR__ . '/models/payment.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,7 +74,6 @@
         margin-left: 0;
       }
     }
-
     @media screen and (max-width: 400px) {
       .sidebar a {
         text-align: center;
@@ -90,13 +101,15 @@
         <div class="row">
           <div class="col-3" style="width: 25vw">
             <div class="sidebar">
-              <a class="active" href="#home">Home</a>
-              <a href="/student">Student</a>
-              <a href="/teacher">Teacher</a>
-              <a href="/courses">Courses</a>
-              <a href="/batches">Batches</a>
-              <a href="/enrollments">Enrollment</a>
-              <a href="/payments">Payment</a>
+              <a class="active" href="/header.php">Home</a>
+              <a href="/task/sms-1/student/index.php">Student</a>
+              <a href="/task/sms-1/teacher/index.php">Teacher</a>
+              <a href="/task/sms-1/courses/index.php">Courses</a>
+              <a href="/task/sms-1/batches/index.php">Batches</a>
+              <a href="/task/sms-1/enrollments/index.php">Enrollment</a>
+              <a href="/task/sms-1/payments/index.php">Payment</a>
             </div>
           </div>
           <div class="col-9">
+
+        
