@@ -1,4 +1,18 @@
-<?php include "../header.php" ?>
+<?php 
+// include '../core/dbconnect.php';
+include '../controller/studentcontroller.php';
+include "../header.php";
+  $students = $studentController->index();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $studentController->create($_POST['name'], $_POST['mobile'], $_POST['address']);
+    header("Location: index.php");
+    exit();
+}
+
+
+
+?>
 
 <div class="card">
   <div class="card-header">
@@ -22,14 +36,17 @@
           </tr>
         </thead>
         <tbody>
+          <?php
+          foreach ($students as $student) {
+          ?>
           <tr>
-            <td>1</td>
-            <td>My Name</td>
-            <td>My Address</td>
-            <td>684390232</td>
+            <td><?php echo $student[student_id]?></td>
+            <td><?php echo $student[name]?></td>
+            <td><?php echo $student[mobile]?></td>
+            <td><?php echo $student[address]?></td>
             
             <td>
-              <a href="" title="View Student"><button class="btn btn-primary">View</button></a>
+              <a href="<?php  ?>" title="View Student"><button class="btn btn-primary">View</button></a>
               <a href="" title="Edit Student"><button class="btn btn-success">Edit</button></a>
               
               <form method="POST" action="">
@@ -38,6 +55,7 @@
               
             </td>
           </tr>
+          <?php } ?>
           <h2></h2>
         </tbody>
       </table>

@@ -1,5 +1,4 @@
 <?php
-require_once __DIR__ . '/models/allmodels.php';
 require_once __DIR__ . '/core/dbconnect.php';
 require_once __DIR__ . '/models/student.php';
 require_once __DIR__ . '/models/teacher.php';
