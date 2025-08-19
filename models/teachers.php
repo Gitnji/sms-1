@@ -2,39 +2,14 @@
 require_once '../core/dbconnect.php';
 
 class teachers{
-    private $teacher_id;
-    private $name;
-    private $address;
-    private $mobile;
+    private  $conn;
     private $table = "teachers";
 
     public function __construct(){
-        $db = new Database();
-        $this->connect = $db->getConnection();
+        //$db = new Database();
+        $this->conn = Database::getConnection();
     }
-    public function getId() {
-        return $this->teacher_id;
-    }
-    public function getName() {
-        return $this->name;
-    }
-    public function getAddress() {
-        return $this->address;
-    }
-    public function getMobile() {
-        return $this->mobile;
-    }
-
-    public function setName($name) {
-        $this->name = $name;
-    }
-    public function setAddress($address) {
-        $this->address = $address;
-    }
-    public function setMobile($mobile) {
-        $this->mobile = $mobile;
-    }
-    public function create() {
+    public function createteacher($name, $mobile, $address) {
         $db = new Database();
         $conn = $db->getConnection();
         $stmt = $conn->prepare("INSERT INTO $this->table (name, address, mobile) VALUES (?, ?, ?)");

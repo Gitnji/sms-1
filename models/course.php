@@ -1,44 +1,17 @@
 <?php
 require_once '../core/dbconnect.php';
 
-class courses{
-    private $course_id;
-    private $name;
-    private $syllabus;
-    private $duration;
+class courses {
+    private $conn;
     private $table = "courses";
 
     public function __construct(){
-        $db = new Database();
-        $this->connect = $db->getConnection();
+        //$db = new Database();
+       $this->conn = Database::getConnection();
+    
     }
 
-    public function getId() {
-        return $this->course_id;
-    }
     
-    public function getName() {
-        return $this->name;
-    }
-    
-    public function getSyllabus() {
-        return $this->syllabus;
-    }
-    public function getDuration() {
-        return $this->duration;
-    }
-
-    public function setName($name) {
-        $this->name = $name;
-    }
-    
-    public function setSyllabus($description) {
-        $this->description = $description;
-    }
-    public function setDuration($duration) {
-        $this->duration = $duration;
-    }
-
     public function create() {
         $db = new Database();
         $conn = $db->getConnection();
@@ -75,5 +48,19 @@ class courses{
         $stmt = $conn->prepare("DELETE FROM $this->table WHERE course_id = ?");
         $stmt->bind_param("i", $course_id);
         return $stmt->execute();
+    }
+    public function readAll(){
+        $db = new Database();
+        $conn = $db->getConnection();
+        $sql = "SELECT * FROM $this->table";
+        $result = $conn->query($sql);
+        $rows = [];
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $rows[] = $row;
+            }
+        }
+        return $rows;
     }
 }

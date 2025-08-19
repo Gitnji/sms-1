@@ -1,15 +1,15 @@
 <?php
-require_once '../models/Student.php';
+require_once '../models/Students.php';
 
-class studentconroller{
+class StudentController extends Students{
 
     public function index(){
-        $student = new students();
-        $students = $student->readAll();
-        require_once '../student/index.php';
+        $students = $this->readAll();
+        return $students;
     }
-    public function create(){
-        require_once '../student/student/create.php';
+    public function create($name, $address, $mobile){
+        $result = $this->createStudent($name, $address, $mobile);
+        return $result;
     }
     public function store(){
         if ($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -21,15 +21,15 @@ class studentconroller{
             header('Location: index.php');
         }
     } 
-    public function update($student_id){
-        $student = new students();
-        $student_data = $student->search($student_id);
-        if ($student_data) {
-            require_once '../student/student/edit.php';
-        } else {
-            header('Location: index.php');
-        }
-    }
+    // public function update($student_id){
+    //     $student = new students();
+    //     $student_data = $student->search($student_id);
+    //     if ($student_data) {
+    //         require_once '../student/student/edit.php';
+    //     } else {
+    //         header('Location: index.php');
+    //     }
+    // }
 
     public function delete($student_id){
         $student = new students();
@@ -37,4 +37,4 @@ class studentconroller{
         header('Location: index.php');
     }
 }
-$studentController = new studentconroller();
+// $studentController = new studentconroller();

@@ -1,7 +1,11 @@
 <?php
-require_once __DIR__ . '/core/dbconnect.php';
-require_once __DIR__ . '/models/student.php';
-require_once __DIR__ . '/models/teacher.php';
+
+include "../controller/studentcontroller.php";
+$studentController = new StudentController();
+
+// require_once __DIR__ . '/core/dbconnect.php';
+// require_once __DIR__ . '/models/student.php';
+// require_once __DIR__ . '/models/teacher.php';
 //require_once __DIR__ . '/models/course.php';
 //require_once __DIR__ . '/models/batch.php';
 //require_once __DIR__ . '/models/enrollment.php';

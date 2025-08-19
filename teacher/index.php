@@ -1,4 +1,15 @@
-<?php include "../header.php" ?>
+<?php
+include '../header.php';
+require_once '../controller/teachercontroller.php';
+$teacherController = new teachercontroller();
+$teachers = $teacherController->index();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $teacherController->create($_POST['name'], $_POST['address'], $_POST['mobile']);
+  header("Location: index.php");
+  exit();
+}
+?>
 
 <div class="card">
   <div class="card-header">
@@ -14,7 +25,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th>#</th>
+            <th>Id</th>
             <th>Name</th>
             <th>Address</th>
             <th>Mobile</th>
@@ -22,23 +33,25 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>My name</td>
-            <td>Mobile</td>
-            <td>675823323</td>
-            
-            <td>
-              <a href="" title="View Teacher"><button class="btn btn-primary">View</button></a>
-              <a href="" title="Edit Teacher"><button class="btn btn-success">Edit</button></a>
-              
-              <form method="POST" action="">
-                <button type="submit" class="btn btn-danger btn-sm" title="Delete Teacher">Delete</button>
-              </form>
-              
-            </td>
-          </tr>
-          <h2></h2>
+          <?php
+          $counter = 0;
+          foreach($teachers as $teacher) {
+            $counter++;
+            echo "<tr>";
+            echo "<td>" . $counter . "</td>";
+            echo "<td>" . htmlspecialchars($teacher['name']) . "</td>";
+            echo "<td>" . htmlspecialchars($teacher['address']) . "</td>";
+            echo "<td>" . htmlspecialchars($teacher['mobile']) . "</td>";
+            echo '<td>';
+            echo '<a href="#" title="View Teacher"><button class="btn btn-primary">View</button></a> ';
+            echo '<a href="#" title="Edit Teacher"><button class="btn btn-success">Edit</button></a> ';
+            echo '<form method="POST" action="" style="display:inline;">';
+            echo '<button type="submit" class="btn btn-danger btn-sm" title="Delete Teacher">Delete</button>';
+            echo '</form>';
+            echo '</td>';
+            echo '</tr>';
+          }
+         ?>    
         </tbody>
       </table>
     </div>

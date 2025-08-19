@@ -1,7 +1,22 @@
 <?php
+include "../header.php";
 
+$msg = "";
+if(isset($_POST['submit'])){
+    $name = isset($_POST['name']) ? $_POST['name'] : null;
+    $address = isset($_POST['address']) ? $_POST['address'] : null;
+    $mobile = isset($_POST['mobile']) ? $_POST['mobile'] : null;
+    $age = isset($_POST['age']) ? $_POST['age'] : null;
+    $parent_contact = isset($_POST['parent_contact']) ? $_POST['parent_contact'] : null;
+    if($name && $address && $mobile){
+        if($studentController->create($name,$address, $mobile)){
+            header("Location: index.php");
+        } else {
+            $msg = "Student Creation Not Successful";
+        }
+    }
+}
 ?>
-<?php include "../header.php" ?>
 
 <div class="card">
     <div class="card-header">Students Page</div>
@@ -18,7 +33,7 @@
             <label for="parent-contact">Parent Contact</label>
             <input type="tel" name="parent_contact" id="parent-contact" class="form-control"><br>
             
-            <button type="submit">Create</button>
+            <button type="submit" name="submit">Create</button>
         </form>
     </div>
 </div>

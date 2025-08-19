@@ -1,48 +1,22 @@
 <?php
 require_once '../core/dbconnect.php';
 
-class students{
-    private $student_id;
-    private $name;
-    private $address;
-    private $mobile;
+class Students{
+    private $conn;
     private $table = "students";
 
     public function __construct(){
-        $db = new Database();
-        $this->connect = $db->getConnection();
+        // $db = new Database();
+        // $this->connect = $db->conn;
+        // OR THIS
+        $this->conn = Database::getConnection();
     }
 
-    public function getId() {
-        return $this->student_id;
-    }
-    public function getName() {
-        return $this->name;
-    }
-    public function getAddress() {
-        return $this->address;
-    }
-    public function getMobile() {
-        return $this->mobile;
-    }
-    
-    public function setName($name) {
-        $this->name = $name;
-    }
-    public function setAddress($address) {
-        $this->address = $address;
-    }
-    public function setMobile($mobile) {
-        $this->mobile = $mobile;
-    }
-
-
-    public function create() {
-        $db = new Database();
-        $conn = $db->getConnection();
-        $stmt = $conn->prepare("INSERT INTO $this->table (name, address, mobile) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $this->name, $this->address, $this->mobile);
-        return $stmt->execute();
+    public function createStudent($name, $address, $mobile) {
+        $stmt = $this->conn->prepare("INSERT INTO $this->table (name, address, mobile) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $name, $address, $mobile);
+        $result = $stmt->execute();
+        return $result;
     }
 
     public function search($student_id){

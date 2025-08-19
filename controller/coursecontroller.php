@@ -1,16 +1,15 @@
 <?php
 require_once '../models/Course.php';
 
-class coursecontroller {
+class coursecontroller extends courses {
 
     public function index() {
-        $course = new courses();
-        $courses = $course->readAll();
-        require_once '../course/course/index.php';
+        $courses = $this->readAll();
+        return $courses;
     }
 
     public function create() {
-        require_once '../course/course/create.php';
+        
     }
 
     public function store() {
@@ -23,9 +22,9 @@ class coursecontroller {
         }
     }
 
-    public function update($course_id) {
+    public function update() {
         $course = new courses();
-        $course_data = $course->search($course_id);
+        $course_data = $course->search();
         if ($course_data) {
             require_once '../course/course/edit.php';
         } else {
