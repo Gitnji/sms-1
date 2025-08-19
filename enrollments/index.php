@@ -1,4 +1,10 @@
-<?php include "../header.php" ?>
+<?php include "../header.php";
+require_once '../controller/enrollmentcontroller.php';
+$enrollmentController = new EnrollmentController();
+$enrollments = $enrollmentController->index();  
+
+
+?>
 
 <div class="card">
   <div class="card-header">
